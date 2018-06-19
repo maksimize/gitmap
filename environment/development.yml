@@ -1,0 +1,22 @@
+version: "2"
+services:
+  data:
+    image: alpine:3.7
+    volumes:
+      - ../app:/iprice/git/gitmap/app
+  nginx:
+    image: nginx:latest
+    ports:
+     - 80:80
+    volumes:
+      - ../nginx/conf.d/:/etc/nginx/conf.d/
+    volumes_from:
+      - data
+    links:
+      - php
+  php:
+    image: php:7-fpm
+    expose:
+      - 9000
+    volumes_from:
+      - data
