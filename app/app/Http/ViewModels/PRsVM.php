@@ -35,14 +35,14 @@ class PRsVM {
         $diff = $created_at->diffInDays();
 
         if ($diff < 2) {
-            return 'bg-success';
+            return 'border-success';
         }
 
         if ($diff < 4) {
-            return 'bg-warning';
+            return 'border-warning';
         }
 
-        return 'bg-danger';
+        return 'border-danger';
     }
 
     public function getData()

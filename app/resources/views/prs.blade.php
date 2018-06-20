@@ -19,10 +19,11 @@
 
             <div class="container">
                 <div class="row">
+
                     @foreach($prs as $pr)
                         <div class="col">
-                            <div class="card text-white {{  $pr['cssClass'] }}" style="width: 18rem;">
-                                <img class="card-img-top" src="{{ $pr['user']['image'] }}" alt="Card image cap">
+                            <div class="card {{  $pr['cssClass'] }}" style="width: 14rem;" >
+                                <img class="card-img-top" src="{{ $pr['user']['image'] }}" style="width: 10rem;" >
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $pr['since'] }}</h5>
                                     <p class="card-text">{{ $pr['title'] }}</p>

@@ -8,10 +8,10 @@ use Github\Client;
 class PrsController extends Controller
 {
 
-    public function index()
+    public function index(string $user, string $repo)
     {
         $client = new Client();
-        $prs = $client->api('pulls')->all('ampproject', 'amphtml');
+        $prs = $client->api('pulls')->all($user, $repo);
         $data['prs'] = (new PRsVM($prs))->getData();
 
         return view('prs', $data);
