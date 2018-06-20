@@ -15,8 +15,14 @@ services:
     links:
       - php
   php:
-    image: php:7-fpm
+    build:
+      context: ./php
     expose:
       - 9000
     volumes_from:
       - data
+
+  redis:
+    image: redis:alpine
+    expose:
+      - 6379

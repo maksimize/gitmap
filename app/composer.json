@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "~2.2",
         "knplabs/github-api": "^2.8",
         "php-http/guzzle6-adapter": "^1.1",
-        "nesbot/carbon": "^1.30"
+        "nesbot/carbon": "^1.30",
+        "cache/redis-adapter": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

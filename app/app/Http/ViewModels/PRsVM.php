@@ -4,7 +4,8 @@ namespace App\Http\ViewModels;
 
 use Carbon\Carbon;
 
-class PRsVM {
+class PRsVM
+{
 
     protected $data;
 
@@ -12,8 +13,8 @@ class PRsVM {
     {
         foreach ($prs as $pr) {
             $this->data[] = [
-                'user' => ['image' => $pr['user']['avatar_url']],
-                'title' => $pr['title'],
+                'user' => ['image' => $pr['user']['avatar_url'], 'name' => $pr['user']['login']],
+                'pr' => ['title' => $pr['title'], 'url' => $pr['url'], 'id' => $pr['number']],
                 'since' => $this->getSince($pr),
                 'cssClass' => $this->getCssClass($pr),
             ];
@@ -35,14 +36,14 @@ class PRsVM {
         $diff = $created_at->diffInDays();
 
         if ($diff < 2) {
-            return 'border-success';
+            return 'green';
         }
 
         if ($diff < 4) {
-            return 'border-warning';
+            return 'orange';
         }
 
-        return 'border-danger';
+        return 'red';
     }
 
     public function getData()
