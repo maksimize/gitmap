@@ -21,28 +21,7 @@
 
 
         <div class="two wide column">
-            <h3>Status</h3>
-            <div class="ui vertical menu">
-                <div class="ui item">
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
-                        <label>Open</label>
-                    </div>
-                </div>
-                <div class="ui item">
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
-                        <label>Merged</label>
-                    </div>
-                </div>
-                <div class="ui item">
-
-                    <div class="ui toggle checkbox">
-                        <input type="checkbox" name="public">
-                        <label>Closed</label>
-                    </div>
-                </div>
-            </div>
+            @include('PRs.filters')
         </div>
     </div>
 @endsection

@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\ViewModels\PRsVM;
 use Cache\Adapter\Redis\RedisCachePool;
 use Github\Client;
+use Illuminate\Http\Request;
 use Redis;
 
 class PrsController extends Controller
 {
 
-    public function index(string $user, string $repo)
+    public function index(string $user, string $repo, Request $request)
     {
         $client = new Client();
         $redisClient = new Redis();
@@ -18,10 +19,27 @@ class PrsController extends Controller
         $pool = new RedisCachePool($redisClient);
         $client->addCache($pool);
 
-//        $prs = $client->api('pulls')->all($user, $repo, ['direction' => 'asc']);
-        $prs = $client->api('pulls')->all($user, $repo);
-        $data['prs'] = (new PRsVM($prs))->getData();
+        $filters = $this->getFilters($request);
+        $prs = $client->api('pulls')->all(
+            $user,
+            $repo,
+            [
+                'direction' =>$filters['order'],
+                'state' => $filters['state']
+            ]
+        );
+
+        $data['prs'] = (new PRsVM($prs, $filters))->getData();
 
         return view('PRs.index', $data);
     }
+
+    private function getFilters(Request $request){
+        $config = [];
+        $config['order'] = $request->input('order', 'asc');
+        $config['state'] = $request->input('state', 'open');
+
+        return $config;
+    }
+
 }

@@ -11,9 +11,9 @@ function dump($data, $before = '', $after = '', $colorize = true)
     echo "<br>" . $after;
 }
 
-
-function ddd($data, $before = '', $after = '', $colorize = true)
+function dj($data, $before = '', $after = '', $colorize = true)
 {
-    dump($data, $before, $after, $colorize);
+    header('Content-Type: application/json');
+    echo json_encode($data);
     die(1);
 }

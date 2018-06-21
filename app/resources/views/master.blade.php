@@ -51,7 +51,6 @@
 <body>
 <div class="ui main container">
     <h1 class="ui header">Git Map</h1>
-    <p>This example shows how to use lazy loaded images, a sticky menu, and a simple text container</p>
 </div>
 
 

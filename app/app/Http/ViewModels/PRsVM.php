@@ -9,14 +9,26 @@ class PRsVM
 
     protected $data;
 
-    public function __construct(array $prs)
+    public function __construct(array $prs, array $filters)
     {
         foreach ($prs as $pr) {
             $this->data[] = [
-                'user' => ['image' => $pr['user']['avatar_url'], 'name' => $pr['user']['login']],
-                'pr' => ['title' => $pr['title'], 'url' => $pr['url'], 'id' => $pr['number']],
+                'repo' => [
+                    'owner' => $pr['base']['user']['login'],
+                    'repo' => $pr['base']['repo']['name'],
+                ],
+                'user' => [
+                    'image' => $pr['user']['avatar_url'],
+                    'name' => $pr['user']['login'],
+                ],
+                'pr' => [
+                    'title' => $pr['title'],
+                    'url' => $pr['url'],
+                    'id' => $pr['number'],
+                ],
                 'since' => $this->getSince($pr),
                 'cssClass' => $this->getCssClass($pr),
+                'filters' => $filters,
             ];
         }
 

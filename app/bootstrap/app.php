@@ -24,8 +24,10 @@ $app = new Laravel\Lumen\Application(
 );
 
 // $app->withFacades();
+//class_alias('Illuminate\Support\Facades\Request', 'Request');
 
 // $app->withEloquent();
+
 
 /*
 |--------------------------------------------------------------------------
